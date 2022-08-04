@@ -6,7 +6,8 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
 fi
 
 # Enable the read-write file system
-rpi-rw
+mount -o remount,rw / 
+mount -o remount,rw /boot
 
 # Create tmp file
 echo "Creating temp download location.."

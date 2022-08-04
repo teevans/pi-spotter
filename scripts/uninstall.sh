@@ -4,7 +4,8 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
-rpi-rw
+mount -o remount,rw / 
+mount -o remount,rw /boot
 
 rm -rf /tmp/pispotter
 rm -rf /var/www/pispotter
