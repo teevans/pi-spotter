@@ -1,5 +1,7 @@
 # Pi-Spotter
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/teevans/pi-spotter/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/teevans/pi-spotter/tree/master)
+
 Welcome to Pi-Spotter! This is meant to be an additional dashboard to Pi-Star to see live tracking of
 your hotspot callers that shows their callsign, country, city, and state! Get started by following the
 instructions below.
@@ -9,21 +11,28 @@ instructions below.
 To install Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
 ```bash
-wget https://github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo sh
+# First execute this to enable read-write mode on the pi-star
+rpi-rw
+
+# Then execute this to install Pi-Spotter
+wget -O - https://github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo bash
 ```
 
-## Nginx Config
+## Uninstall
 
-Need to updated the nginx config to allow cross origin requests for testing.
+To uninstall Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
-Add this line to the /etc/nginx/default.d/php.conf file.
+```bash
+# First execute this to enable read-write mode on the pi-star
+rpi-rw
 
+# Then execute this to install Pi-Spotter
+wget -O - https://github.com/teevans/pi-spotter/releases/latest/download/uninstall.sh | sudo bash
 ```
-add_header Access-Control-Allow-Origin *;
-```
 
-Then execute this command
+## Under the Hood
 
-```
-sudo systemctl reload nginx
-```
+This is a React single page app that get installed into the Nginx configuration that Pi-Star
+uses out of the box! All of the compiled files are loaded into the `/var/html/pispotter`
+directory to be served. The installer also takes care of loading in an nginx configuration file
+to serve the pages and static files properly.

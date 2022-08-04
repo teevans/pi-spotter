@@ -36,6 +36,7 @@ jobs:
           paths:
             - scripts/pispotter.zip
             - scripts/install.sh
+            - scripts/uninstall.sh
       - store_artifacts:
           path: pispotter.zip
           destination: build
