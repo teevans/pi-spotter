@@ -1,6 +1,11 @@
 import { React, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { HomeIcon, MenuAlt2Icon, XIcon } from "@heroicons/react/outline";
+import {
+  HomeIcon,
+  MenuAlt2Icon,
+  SearchIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Spotter from "./pages/spotter";
 import { ApiProvider } from "./contexts/ApiContext";
@@ -13,6 +18,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const defaultURL = () => {
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development")
+    return "http://192.168.1.184";
+  return "";
+};
+
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -21,7 +32,7 @@ const App = () => {
 
   return (
     <>
-      <ApiProvider value={""}>
+      <ApiProvider value={defaultURL()}>
         <div>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog
@@ -122,12 +133,9 @@ const App = () => {
           <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
-              <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Blah."
-                />
+              <div className="flex text-white items-center h-16 flex-shrink-0 px-4 bg-gray-900">
+                <SearchIcon class="h-6 mr-2" />
+                <span className="font-bold text-2xl">Pi-Spotter</span>
               </div>
               <div className="flex-1 flex flex-col overflow-y-auto">
                 <nav className="flex-1 px-2 py-4 space-y-1">
