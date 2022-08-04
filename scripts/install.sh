@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     echo "Pi-Spotter requires root to be installed. Please try again using sudo!"
