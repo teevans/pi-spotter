@@ -8,25 +8,6 @@ orbs:
   gh: circleci/github-cli@2.0
 
 jobs:
-  release:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - attach_workspace:
-          at: ./
-      - gh/release:
-          context:
-            - GITHUB_CREDS
-          filters:
-            branches:
-              only:
-                - master
-          notes-file: README.md
-          files: pispotter.zip
-          requires:
-            - build
-          tag: $CIRCLE_BUILD_NUM
-          title: Auto-Release from Circle CI
   build:
     executor:
       name: node/default
@@ -53,4 +34,16 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-      - release
+      - gh/release:
+          context:
+            - GITHUB_CREDS
+          filters:
+            branches:
+              only:
+                - master
+          notes-file: README.md
+          files: pispotter.zip
+          requires:
+            - build
+          tag: $CIRCLE_BUILD_NUM
+          title: Auto-Release from Circle CI
