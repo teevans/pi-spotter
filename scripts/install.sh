@@ -5,6 +5,10 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
+# Enable the read-write file system
+mount -o remount,rw / 
+mount -o remount,rw /boot
+
 printf -- '======================================\n'
 printf -- '==           Pi-Spotter             ==\n'
 printf -- '==           Installer              ==\n'
@@ -13,10 +17,6 @@ printf -- '\n'
 printf -- 'Installing...'
 
 { 
-  # Enable the read-write file system
-  mount -o remount,rw / 
-  mount -o remount,rw /boot
-
 
   # Create tmp file
   rm -rf /tmp/pispotter
@@ -45,11 +45,12 @@ printf -- 'Installing...'
   # Clean Up
   rm -rf /tmp/pispotter
 
-  # Enable RO Filesystem
-  mount -o remount,ro / 
-  mount -o remount,ro /boot
 
 } > pispotter-install.log 2>&1 
+
+# Enable RO Filesystem
+mount -o remount,ro / 
+mount -o remount,ro /boot
 
 ipaddress=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 printf -- '\033[32m Done! \033[0m\n'
