@@ -17,7 +17,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             go install github.com/tcnksm/ghr@v0.14.0
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_BUILD_NUM} ./pispotter.zip
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_BUILD_NUM} ./scripts
   build:
     executor:
       name: node/default
@@ -28,11 +28,14 @@ jobs:
       - run:
           command: npm run build
       - run:
-          command: zip -m pispotter.zip build/*
+          command: cp nginx/pispotter.conf build/
+      - run:
+          command: zip -m scripts/pispotter.zip build/*
       - persist_to_workspace:
           root: .
           paths:
             - pispotter.zip
+            - scripts/install.sh
       - store_artifacts:
           path: pispotter.zip
           destination: build
