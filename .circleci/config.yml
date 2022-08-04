@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            go get github.com/tcnksm/ghr
+            go install github.com/tcnksm/ghr@latest
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${$CIRCLE_BUILD_NUM} ./pispotter.zip
   build:
     executor:
