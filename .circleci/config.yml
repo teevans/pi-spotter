@@ -28,7 +28,7 @@ jobs:
       - run:
           command: npm run build
       - run:
-          command: cp nginx/pispotter.conf build/
+          command: cp -r nginx/pispotter.conf build/
       - run:
           command: zip -m scripts/pispotter.zip build/*
       - persist_to_workspace:

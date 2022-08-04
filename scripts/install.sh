@@ -15,7 +15,7 @@ echo "Downloading latest release"
 wget -O /tmp/pispotter/pispotter.zip https://github.com/teevans/pi-spotter/releases/latest/download/pispotter.zip
 
 # Extract the contents
-unzip /tmp/pispotter/pispotter.zip
+unzip /tmp/pispotter/pispotter.zip -d /tmp/pispotter/
 
 # Create the folder for nginx
 rm -rf /var/www/pispotter
