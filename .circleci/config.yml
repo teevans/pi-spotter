@@ -8,28 +8,12 @@ orbs:
   gh: circleci/github-cli@2.0
 
 jobs:
-  build:
-    executor:
-      name: node/default
-      tag: '18.7'
+  release:
+    docker:
+      - image: 'cimg/base:stable'
     steps:
-      - checkout
-      - node/install-packages
-      - run:
-          command: npm run build
-      - run:
-          command: zip -m pispotter.zip build/*
-      - store_artifacts:
-          path: pispotter.zip
-          destination: build
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  build: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-    jobs:
-      - build
+      - attach_workspace:
+          at: ./
       - gh/release:
           context:
             - GITHUB_CREDS
@@ -43,3 +27,30 @@ workflows:
             - build
           tag: $CIRCLE_BUILD_NUM
           title: Auto-Release from Circle CI
+  build:
+    executor:
+      name: node/default
+      tag: '18.7'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run build
+      - run:
+          command: zip -m pispotter.zip build/*
+      - persist_to_workspace:
+          root: .
+          paths:
+            - pispotter.zip
+      - store_artifacts:
+          path: pispotter.zip
+          destination: build
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  build: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - build
+      - release
