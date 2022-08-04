@@ -5,18 +5,25 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
+printf -- '======================================'
+printf -- '==           Pi-Spotter             =='
+printf -- '==           Installer              =='
+printf -- '======================================'
+printf -- '\n'
+printf -- 'Installing...'
+
+stty -echo;
+
 # Enable the read-write file system
 mount -o remount,rw / 
 mount -o remount,rw /boot
 
+
 # Create tmp file
-echo "Creating temp download location.."
 rm -rf /tmp/pispotter
 mkdir /tmp/pispotter
-echo "Created /tmp/pispotter"
 
 # Download the compiled version of pi-spotter from releases
-echo "Downloading latest release"
 wget -O /tmp/pispotter/pispotter.zip https://github.com/teevans/pi-spotter/releases/latest/download/pispotter.zip
 
 # Extract the contents
@@ -43,6 +50,12 @@ rm -rf /tmp/pispotter
 mount -o remount,ro / 
 mount -o remount,ro /boot
 
-# Present url for accses
+stty +echo;
+
 ipaddress=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
-echo "You're done! You can now access your Pi-Spotter at $ipaddress/pispotter"
+printf -- '\033[32m Done! \033[0m\n'
+printf -- 'Access Pi-Spotter from the URL Below!'
+printf -- '\n'
+printf -- 'http://$ipaddress/pispotter'
+printf -- '\n'
+
