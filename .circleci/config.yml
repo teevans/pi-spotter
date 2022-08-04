@@ -8,8 +8,8 @@ orbs:
 
 jobs:
   release:
-    docker:
-      - image: cimg/go:1.8
+    executor:
+      - image: cimg/go
     steps:
       - attach_workspace:
           at: .
