@@ -47,7 +47,7 @@ Boom. You should be logged into your Pi-Star through SSH! Continue on to the Ins
 
 Simply copy this command into your terminal window, and hit enter. The install will only take a second,
 and will let you know when it's done! When complete, the installer will tell you the URL to Access
-\*\*Pi-Spotter\* at. It will usually be http://<ipaddress>/pispotter
+\*\*Pi-Spotter\* at. It will usually be http://_ipaddress_/pispotter
 
 ```bash
 wget -qO - github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo sh
