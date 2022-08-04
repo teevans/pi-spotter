@@ -5,9 +5,19 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   node: circleci/node@4.7
-  gh: circleci/github-cli@2.0
 
 jobs:
+  release:
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            go get github.com/tcnksm/ghr
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${$CIRCLE_BUILD_NUM} ./pispotter.zip
   build:
     executor:
       name: node/default
@@ -34,16 +44,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-      - gh/release:
-          context:
-            - GITHUB_CREDS
-          filters:
-            branches:
-              only:
-                - master
-          notes-file: README.md
-          files: pispotter.zip
+      - release:
           requires:
             - build
-          tag: $CIRCLE_BUILD_NUM
-          title: Auto-Release from Circle CI
+
