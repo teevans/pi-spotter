@@ -16,8 +16,10 @@ jobs:
       - node/install-packages
       - run:
           command: npm run build
+      - run:
+          command: zip -m pispotter.zip build/*
       - store_artifacts:
-          path: build
+          path: pispotter.zip
           destination: build
 
 # Invoke jobs via workflows
