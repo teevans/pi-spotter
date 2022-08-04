@@ -11,7 +11,7 @@ instructions below.
 To install Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
 ```bash
-wget -qO - https://github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo sh
+wget -qO - github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo sh
 ```
 
 ## Uninstall
@@ -19,7 +19,7 @@ wget -qO - https://github.com/teevans/pi-spotter/releases/latest/download/instal
 To uninstall Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
 ```bash
-wget -qO - https://github.com/teevans/pi-spotter/releases/latest/download/uninstall.sh | sudo sh
+wget -qO - github.com/teevans/pi-spotter/releases/latest/download/uninstall.sh | sudo sh
 ```
 
 ## Under the Hood
