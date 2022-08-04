@@ -1,8 +1,12 @@
+#!/bin/bash
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     echo "Pi-Spotter requires root to be installed. Please try again using sudo!"
     exit
 fi
+
+# Enable the read-write file system
+rpi-rw
 
 # Create tmp file
 echo "Creating temp download location.."
@@ -31,5 +35,9 @@ cp -r /tmp/pispotter/build/pispotter.conf /etc/nginx/default.d/
 # Reload nginx
 systemctl reload nginx
 
+# Clean Up
+rm -rf /tmp/pispotter
+
 # Present url for accses
-echo "You're done! You can now access your Pi-Spotter at URL HERE"
+ipaddress=ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+echo "You're done! You can now access your Pi-Spotter at $ipaddress/pispotter"

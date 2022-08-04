@@ -4,6 +4,8 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     exit
 fi
 
+rpi-rw
+
 rm -rf /tmp/pispotter
 rm -rf /var/www/pispotter
 rm -f /etc/nginx/default.d/pispotter.conf
