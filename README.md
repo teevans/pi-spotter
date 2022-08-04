@@ -11,9 +11,6 @@ instructions below.
 To install Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
 ```bash
-# First execute this to enable read-write mode on the pi-star
-rpi-rw
-
 # Then execute this to install Pi-Spotter
 wget -O - https://github.com/teevans/pi-spotter/releases/latest/download/install.sh | sudo bash
 ```
@@ -23,9 +20,6 @@ wget -O - https://github.com/teevans/pi-spotter/releases/latest/download/install
 To uninstall Pi-Spotter simply execute the following command from an SSH session on your hotspot!
 
 ```bash
-# First execute this to enable read-write mode on the pi-star
-rpi-rw
-
 # Then execute this to install Pi-Spotter
 wget -O - https://github.com/teevans/pi-spotter/releases/latest/download/uninstall.sh | sudo bash
 ```
