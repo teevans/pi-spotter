@@ -49,12 +49,12 @@ printf -- 'Installing...'
   mount -o remount,ro / 
   mount -o remount,ro /boot
 
-} > /tmp/pispotter/install.log 2>&1 
+} > pispotter-install.log 2>&1 
 
 ipaddress=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 printf -- '\033[32m Done! \033[0m\n'
 printf -- 'Access Pi-Spotter from the URL Below!\n'
 printf -- '\n'
-printf -- 'http://$ipaddress/pispotter\n'
+printf -- "http://$ipaddress/pispotter\n"
 printf -- '\n'
 
