@@ -39,6 +39,10 @@ systemctl reload nginx
 # Clean Up
 rm -rf /tmp/pispotter
 
+# Enable RO Filesystem
+mount -o remount,ro / 
+mount -o remount,ro /boot
+
 # Present url for accses
 ipaddress=ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
 echo "You're done! You can now access your Pi-Spotter at $ipaddress/pispotter"
