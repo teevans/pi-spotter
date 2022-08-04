@@ -19,7 +19,9 @@ export default () => {
       <h1 className="text-4xl font-bold">Spotter</h1>
       <p>Contacts will appear here as they call in. </p>
 
-      <TransmissionList transmissions={data} />
+      <div className="mt-4">
+        <TransmissionList transmissions={data} />
+      </div>
     </>
   );
 };
