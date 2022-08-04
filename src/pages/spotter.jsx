@@ -3,7 +3,7 @@ import TransmissionList from "./spotter/transmission-list";
 import { ApiContext } from "../contexts/ApiContext";
 import { useQuery } from "@tanstack/react-query";
 
-export default () => {
+const Spotter = () => {
   const apiUrl = useContext(ApiContext);
 
   const { data } = useQuery(
@@ -25,3 +25,5 @@ export default () => {
     </>
   );
 };
+
+export default Spotter;

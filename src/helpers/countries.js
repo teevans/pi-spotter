@@ -2178,6 +2178,7 @@ export const countryForCallsign = (callsign) => {
   let match;
 
   for (var i = 3; i > 0; i--) {
+    // eslint-disable-next-line
     countries.every((c) => {
       if (testWithPrefixLength(callsign, c, i)) {
         match = c;

@@ -127,7 +127,7 @@ const FullLookup = ({ transmission, callsign }) => (
   </div>
 );
 
-export default ({ transmission }) => {
+const TransmissionItem = ({ transmission }) => {
   // Fetch Callsign Information
   const { data, isLoading } = useQuery(
     [transmission.callsign],
@@ -143,6 +143,7 @@ export default ({ transmission }) => {
   return (
     <li key={transmission.time_utc}>
       <a
+        rel="noreferrer"
         href={`https://qrz.com/db/${transmission.callsign}`}
         target="_blank"
         className="block hover:bg-gray-50"
@@ -158,4 +159,4 @@ export default ({ transmission }) => {
   );
 };
 
-/* This example requires Tailwind CSS v2.0+ */
+export default TransmissionItem;
