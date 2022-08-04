@@ -16,37 +16,33 @@ printf -- '======================================\n'
 printf -- '\n'
 printf -- 'Installing...'
 
-{ 
 
-  # Create tmp file
-  rm -rf /tmp/pispotter
-  mkdir /tmp/pispotter
+# Create tmp file
+rm -rf /tmp/pispotter > /dev/null
+mkdir /tmp/pispotter > /dev/null
 
-  # Download the compiled version of pi-spotter from releases
-  wget -O /tmp/pispotter/pispotter.zip https://github.com/teevans/pi-spotter/releases/latest/download/pispotter.zip
+# Download the compiled version of pi-spotter from releases
+wget -O /tmp/pispotter/pispotter.zip https://github.com/teevans/pi-spotter/releases/latest/download/pispotter.zip > /dev/null  
 
-  # Extract the contents
-  unzip /tmp/pispotter/pispotter.zip -d /tmp/pispotter/
+# Extract the contents
+unzip /tmp/pispotter/pispotter.zip -d /tmp/pispotter/ > /dev/null  
 
-  # Create the folder for nginx
-  rm -rf /var/www/pispotter
-  mkdir /var/www/pispotter
+# Create the folder for nginx
+rm -rf /var/www/pispotter
+mkdir /var/www/pispotter
 
-  # Copy the contents to an nginx available folder
-  cp -r /tmp/pispotter/build/* /var/www/pispotter/
+# Copy the contents to an nginx available folder
+cp -r /tmp/pispotter/build/* /var/www/pispotter/ 
 
-  # Copy the pi-spotter nginx file to /etc/nginx/default.d/pispotter.conf
-  rm -f /etc/nginx/default.d/pispotter.conf
-  cp -r /tmp/pispotter/build/pispotter.conf /etc/nginx/default.d/
+# Copy the pi-spotter nginx file to /etc/nginx/default.d/pispotter.conf
+rm -f /etc/nginx/default.d/pispotter.conf
+cp -r /tmp/pispotter/build/pispotter.conf /etc/nginx/default.d/
 
-  # Reload nginx
-  systemctl reload nginx
+# Reload nginx
+systemctl reload nginx
 
-  # Clean Up
-  rm -rf /tmp/pispotter
-
-
-} > pispotter-install.log 2>&1 
+# Clean Up
+rm -rf /tmp/pispotter
 
 # Enable RO Filesystem
 mount -o remount,ro / 
