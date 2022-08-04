@@ -2,6 +2,7 @@
   "name": "pi-watch",
   "version": "0.1.0",
   "private": true,
+  "homepage":".",
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",

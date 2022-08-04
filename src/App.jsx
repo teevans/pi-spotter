@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { React, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HomeIcon, MenuAlt2Icon, XIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -13,12 +13,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // eslint-disable-next-line
+  const basename = location.pathname.split("/").slice(0, -1).join("/");
 
   return (
     <>
-      <ApiProvider value={"http://192.168.1.184"}>
+      <ApiProvider value={""}>
         <div>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog
@@ -171,7 +174,7 @@ export default function Example() {
             <main className="flex-1">
               <div className="py-6">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                  <Router>
+                  <Router basename={basename}>
                     <Routes>
                       <Route path="/" element={<Spotter />} />
                     </Routes>
@@ -184,4 +187,5 @@ export default function Example() {
       </ApiProvider>
     </>
   );
-}
+};
+export default App;
