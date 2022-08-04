@@ -16,11 +16,11 @@ const Spotter = () => {
 
   return (
     <>
-      <h1 className="text-4xl font-bold">Spotter</h1>
-      <p>Contacts will appear here as they call in. </p>
-
-      <div className="mt-4">
-        <TransmissionList transmissions={data} />
+      <div className="grid grid-cols-3 gap-3">
+        <div className="col-span-2 bg-white shadow overflow-hidden sm:rounded-md"></div>
+        <div>
+          <TransmissionList transmissions={data} />
+        </div>
       </div>
     </>
   );

@@ -41,22 +41,7 @@ const CallsignOnly = ({ transmission }) => (
         </p>
       </div>
       <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-        <ClockIcon
-          className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
         <p>
-          Heard for&nbsp;
-          <strong>{transmission.duration}</strong> Sec
-        </p>
-      </div>
-      <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-        <CalendarIcon
-          className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
-        <p>
-          Last Heard&nbsp;
           <strong>{timeSince(transmission.time_utc)}</strong>
         </p>
       </div>
@@ -104,22 +89,7 @@ const FullLookup = ({ transmission, callsign }) => (
         </p>
       </div>
       <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-        <ClockIcon
-          className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
         <p>
-          Heard for&nbsp;
-          <strong>{transmission.duration}</strong> Sec
-        </p>
-      </div>
-      <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-        <CalendarIcon
-          className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
-        <p>
-          Last Heard&nbsp;
           <strong>{timeSince(transmission.time_utc)}</strong>
         </p>
       </div>
