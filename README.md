@@ -1,5 +1,7 @@
 # Pi-Spotter
 
+Developed by **KF5IEU**
+
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/teevans/pi-spotter/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/teevans/pi-spotter/tree/master)
 
 Welcome to Pi-Spotter! This is meant to be an additional dashboard to Pi-Star to see live tracking of
