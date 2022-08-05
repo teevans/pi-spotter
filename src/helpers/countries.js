@@ -2190,5 +2190,7 @@ export const countryForCallsign = (callsign) => {
     if (match) break;
   }
 
+  if (!match) return "";
+
   return match;
 };

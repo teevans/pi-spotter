@@ -45,7 +45,7 @@ function getMMDVMConfig() {
       }
 
       if (substr($line, 0, 1) === "[") {
-        $currentHeader = trim($line, "[]");
+        $currentHeader = strtolower(str_replace(' ', '_',trim($line, "[]")));
         $conf[$currentHeader] = array();
         continue;
       }
@@ -54,7 +54,7 @@ function getMMDVMConfig() {
         continue;
       }
       $items = explode("=",$line);
-      $conf[$currentHeader][$items[0]] = $items[1];
+      $conf[$currentHeader][$items[0]] =  $items[1];
     }
 
 	}

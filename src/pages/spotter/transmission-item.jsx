@@ -1,5 +1,4 @@
 import React from "react";
-import { CalendarIcon, ClockIcon } from "@heroicons/react/outline";
 import { useQuery } from "@tanstack/react-query";
 import { timeSince } from "../../helpers/time";
 import { countryForCallsign } from "../../helpers/countries";
@@ -16,28 +15,20 @@ const CallsignOnly = ({ transmission }) => (
           countryCode={countryForCallsign(transmission.callsign).country_code}
           svg
         />
-      </p>
-      <div className="ml-2 flex-shrink-0 flex">
+
         {transmission.bit_error_rate === "" && (
           <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
             TX
           </p>
         )}
-        {transmission.bit_error_rate !== "" && (
-          <>
-            <span className="text-sm text-gray-500 mr-1">Error Rate</span>
-            <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-              {transmission.bit_error_rate}
-            </p>
-          </>
-        )}
-      </div>
+      </p>
     </div>
     <div className="mt-2 sm:flex sm:justify-between">
       <div className="sm:flex">
         <p className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-          Mode&nbsp;
-          <span className="font-bold">{transmission.mode}</span>
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            {transmission.mode}
+          </span>
         </p>
       </div>
       <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
@@ -71,21 +62,14 @@ const FullLookup = ({ transmission, callsign }) => (
             TX
           </p>
         )}
-        {transmission.bit_error_rate !== "" && (
-          <>
-            <span className="text-sm text-gray-500 mr-1">Error Rate</span>
-            <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-              {transmission.bit_error_rate}
-            </p>
-          </>
-        )}
       </div>
     </div>
     <div className="mt-2 sm:flex sm:justify-between">
       <div className="sm:flex">
         <p className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-          Mode&nbsp;
-          <span className="font-bold">{transmission.mode}</span>
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            {transmission.mode}
+          </span>
         </p>
       </div>
       <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
@@ -109,6 +93,8 @@ const TransmissionItem = ({ transmission }) => {
       cacheTime: 1000 * 60 * 60,
     }
   );
+
+  if (!transmission) return <></>;
 
   return (
     <li key={transmission.time_utc}>
