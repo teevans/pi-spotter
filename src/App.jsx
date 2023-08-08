@@ -1,11 +1,4 @@
-import { React, Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import {
-  HomeIcon,
-  MenuAlt2Icon,
-  SearchIcon,
-  XIcon,
-} from "@heroicons/react/outline";
+import { React } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Spotter from "./pages/spotter";
 import { ApiProvider } from "./contexts/ApiContext";
@@ -13,7 +6,7 @@ import NavBar from "./components/NavBar";
 
 const defaultURL = () => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development")
-    return "http://192.168.1.184";
+    return "http://192.168.1.67";
   return "";
 };
 

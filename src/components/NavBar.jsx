@@ -18,6 +18,8 @@ const NavBar = () => {
     return `${freq.substr(0, 3)}.${freq.substr(3, 3)}`;
   };
 
+  const onAir = false;
+
   return (
     <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
       <div className="h-full items-center">
@@ -27,9 +29,15 @@ const NavBar = () => {
       </div>
       <div style={{ width: "1px" }} className="h-full mx-9 bg-gray-100"></div>
       <div>
-        <span className="inline-flex items-center mt-4 px-3 py-0.5 rounded-full text-lg font-medium bg-pink-100 text-pink-800">
-          On Air
-        </span>
+        {onAir ? (
+          <span className="inline-flex items-center mt-4 px-3 py-0.5 rounded-full text-lg font-medium bg-pink-100 text-pink-800">
+            On Air
+          </span>
+        ) : (
+          <span className="inline-flex items-center mt-4 px-3 py-0.5 rounded-full text-lg font-medium bg-green-100 text-green-800">
+            Listening
+          </span>
+        )}
         <span className="font-semibold ml-4">
           {data.mmdvm_config.info.RXFrequency ===
             data.mmdvm_config.info.TXFrequency && (
